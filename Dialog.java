@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
+// HOI DIT IS EEN TEST IN DIALOG test 4
 public class Dialog extends JDialog implements ActionListener {
 
     private Frame frame;
@@ -21,7 +22,6 @@ public class Dialog extends JDialog implements ActionListener {
     protected ArrayList<StorageSpace> thisList = new ArrayList<>();
     private Storage thisStorage;
     protected RouteCheck result;
-    private boolean isOk = false;
 
     public Dialog(Frame frame)
     {
@@ -34,7 +34,6 @@ public class Dialog extends JDialog implements ActionListener {
 
         thisStorage = new Storage(5, 5);
 
-        //Voor elk object wordt een setBounds() gebruikt zodat de exacte locatie bepaald kan worden op het scherm
         label2 = new JLabel("Give locations (1 - 100): ");
         add(label2);
         label2.setBounds(20, 20, 150, 20);
@@ -74,13 +73,15 @@ public class Dialog extends JDialog implements ActionListener {
         slider.setMinorTickSpacing(1);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
+
+        setVisible(true);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
 
-        // Het ophalen van de gegevens die in het dialoog worden ingevoerd, dus de grootte van het raster en de locaties van de items
         if (e.getSource() == set)
         {
             String s = text.getText();
@@ -99,13 +100,10 @@ public class Dialog extends JDialog implements ActionListener {
 
                 } else
                 {
-                    // als de locatie van het item die ingevoerd wordt groter is dan het magazijn, komt er een dialoog met waarschuwing
                     JOptionPane.showMessageDialog(this, getMessage(), "Warning", 2);
                 }
             }
         }
-
-        //hier worden alle gegevens in een arraylist gezet zodat het algoritme bepaald kan worden met daarbij de snelste route
         if (e.getSource() == ok)
         {
             int size = listModel.getSize();
@@ -116,7 +114,6 @@ public class Dialog extends JDialog implements ActionListener {
             }
 
             result = thisStorage.calcFastest();
-            isOk = true;
 
             dispose();
         }
@@ -126,11 +123,6 @@ public class Dialog extends JDialog implements ActionListener {
     public int getValue()
     {
         return slider.getValue();
-    }
-
-    public boolean getIsOk()
-    {
-        return isOk;
     }
 
     public void LocationToXY(int loc)

@@ -194,7 +194,7 @@ public class Storage {
             //return FinalInfo
             finalInfo = (posRoute.get(indexNumFastestRoute));
 
-        } else// if (algoB == selectObj)
+        } else if (sp.size() < 20)// if (algoB == selectObj)
         {
             //aangepast Simpel Gretig Algoritme
             //setting vars
@@ -207,11 +207,8 @@ public class Storage {
 
             //calculate
             //first do the first half of the storage
-            //do it as many times as there are items
             int count1 = 0;
             int safeCopySize = safeCopy.size();
-            while(count1 < safeCopy.size())
-            {
                 //check which one is the most close
                 for (int item = 0; item < safeCopySize; item++)
                 {
@@ -273,6 +270,9 @@ public class Storage {
                 safeCopySize = safeCopy.size();
                 for (int item = 0; item <safeCopySize; item++)
                 {
+                    //makes sure only second half is checked
+                    if (safeCopy.get(item).getX() > (this.x / 2))
+                    {
                         //algoritm here
                         //check closest item
                         int differenceX;
@@ -322,7 +322,6 @@ public class Storage {
                         //deleting item from safeCopy
                         safeCopy.remove(shortIndex);
                     }
-                count1++;
             }
                 //create/trow final RouteCheck object
                 RouteCheck fin = new RouteCheck();
@@ -334,7 +333,26 @@ public class Storage {
 
                 //setting meaning of finalInfo
                 finalInfo = fin;
-        }
+        } else
+            {
+                //normal simpel gretig
+                //declaring vars
+                int differenceX;
+                int differenceY;
+                int timeTaken;
+                int shortIndex = 0;
+                int shortestTimeTaken = 0;
+                int indexNum = 0;
+                //ArrayList for saving the right route
+                ArrayList<StorageSpace> limitedTime = new ArrayList<>();
+                ArrayList<StorageSpace> safeCopy = sp;
+                //setting a startpostion
+                int xStart = 0;
+                int yStart = 0;
+                
+                //algoritm itself here
+                //
+            }
         System.out.println(finalInfo);
         return finalInfo;
         //end functions
