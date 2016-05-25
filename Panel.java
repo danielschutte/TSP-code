@@ -31,6 +31,7 @@ public class Panel extends JPanel implements ActionListener {
     {
 
         this.frame = frame;
+
         setBackground(Color.WHITE);
         setPreferredSize(new Dimension(420, 420));
         if (dialog.getIsOk())
@@ -73,9 +74,9 @@ public class Panel extends JPanel implements ActionListener {
     public void setRouteRobot()
     {
 
-        if (counter < dialog.result.route.size())
+        if (counter < frame.dialog.result.route.size())
         {
-            StorageSpace sp = dialog.result.route.get(this.counter);
+            StorageSpace sp = frame.dialog.result.route.get(this.counter);
             int xx = sp.getX();
             int yy = sp.getY();
             xx = (xx * 80) - 40;
@@ -252,17 +253,17 @@ public class Panel extends JPanel implements ActionListener {
         }
 
         //draw package
-        int listSize = dialog.listModel.getSize();
+        int listSize = frame.dialog.listModel.getSize();
 
         ArrayList DrawPackages = new ArrayList();
 
         if (counter < listSize)
         {
-            for (int i = 0; i < dialog.listModel.getSize(); i++)
+            for (int i = 0; i < frame.dialog.listModel.getSize(); i++)
             {
-                for (int j = 0; j < dialog.listModel.getSize(); j++)
+                for (int j = 0; j < frame.dialog.listModel.getSize(); j++)
                 {
-                    for (StorageSpace sp : dialog.thisList)
+                    for (StorageSpace sp : frame.dialog.thisList)
                     {
                         int x1 = sp.getX();
                         int y1 = sp.getY();
